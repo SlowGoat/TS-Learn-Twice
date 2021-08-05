@@ -114,6 +114,7 @@ test3.show();
 function proDec(params) {
     // 第一个参数是这个类本身，第二个参数是属性名
     return function (target, attr) {
+        console.log('看这里', target);
         target[attr] = params;
     };
 }
@@ -126,7 +127,11 @@ var Test4 = /** @class */ (function () {
     __decorate([
         proDec('http://4399.com')
     ], Test4.prototype, "url", void 0);
+    __decorate([
+        proDec('test')
+    ], Test4, "staticProperty", void 0);
     return Test4;
 }());
 var test4 = new Test4();
 test4.getData();
+console.log(Test4.staticProperty);

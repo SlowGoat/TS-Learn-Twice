@@ -81,6 +81,7 @@ test3.show()
 function proDec(params: any) {
   // 第一个参数是这个类本身，第二个参数是属性名
   return function(target: any, attr: any) {
+    console.log('看这里', target);
     target[attr] = params
   }
 }
@@ -89,6 +90,9 @@ class Test4 {
   @proDec('http://4399.com')
   url: string | undefined
 
+  @proDec('test')
+  public static staticProperty: string | undefined
+
   getData() {
     console.log(this.url);
   }
@@ -96,4 +100,6 @@ class Test4 {
 
 let test4 = new Test4()
 test4.getData()
+console.log(Test4.staticProperty);
+
 
